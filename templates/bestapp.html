@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #2196F3;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        select,
+        button {
+            margin-top: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .app {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+
+        .app:hover {
+            transform: scale(1.05);
+        }
+
+        .app img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        #appList {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>App Categories</title>
+</head>
+
+<body>
+    <header>
+        <h1>App Categories</h1>
+    </header>
+    <div class="container">
+        <div>
+            <label for="category">Select Category:</label>
+            <select id="category" onchange="populateFeatures()">
+                <option value="" disabled selected>Select Category</option>
+            </select>
+        </div>
+        <div>
+            <label for="feature">Select Feature:</label>
+            <select id="feature">
+                <option value="" disabled selected>Select Feature</option>
+            </select>
+        </div>
+        <button onclick="submitForm()">Submit</button>
+
+        <div id="appList"></div>
+    </div>
+
+    <script>
+        const categories = [
+            'Social', 'Entertainment', 'Music', 'Productivity',
+            'Developer Tools', 'Personalization', 'Utilities & Tools', 'Multimedia Design',
+            'Shopping', 'Business', 'Security', 'Education', 'Medical', 'Personal Finance'
+        ];
+
+        const featuresData = {
+            'Social': ['Messaging', 'Secure Messaging', 'Social Networking'],
+            'Entertainment': ['Streaming Entertainment', 'Gaming', 'Movies & TV Shows'],
+            'Music': ['Music Streaming', 'Podcasts'],
+            'Productivity': ['Task Management', 'Note-taking', 'Calendar'],
+            'Developer Tools': ['IDEs', 'Code Editors'],
+            'Personalization': ['Themes', 'Customization'],
+            'Utilities & Tools': ['System Utilities', 'File Management'],
+            'Multimedia Design': ['Graphic Design', 'Video Production'],
+            'Shopping': ['E-commerce', 'Deals & Discounts'],
+            'Business': ['Office Suites', 'Collaboration'],
+            'Security': ['Antivirus', 'VPN'],
+            'Education': ['Learning Platforms', 'E-books'],
+            'Medical': ['Health Monitoring', 'Medical Reference'],
+            'Personal Finance': ['Budgeting', 'Expense Tracking']
+        };
+
+        const appData = [
+            // Social
+            { name: 'WhatsApp Desktop', category: 'Social', feature: 'Messaging', icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/epdKAAAAABJRU5ErkJggg==' },
+            { name: 'Telegram Desktop', category: 'Social', feature: 'Secure Messaging', icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/epdKAAAAABJRU5ErkJggg==' },
+            // Add more app data with inline base64 icons
+        ];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const categorySelect = document.getElementById('category');
+            const featureSelect = document.getElementById('feature');
+
+            // Populate category dropdown
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.text = category;
+                categorySelect.appendChild(option);
+            });
+        });
+
+        function populateFeatures() {
+            const categorySelect = document.getElementById('category');
+            const featureSelect = document.getElementById('feature');
+
+            // Clear existing options
+            featureSelect.innerHTML = '<option value="" disabled selected>Select Feature</option>';
+
+            const selectedCategory = categorySelect.value;
+            const features = featuresData[selectedCategory] || [];
+
+            // Populate feature dropdown
+            features.forEach(feature => {
+                const option = document.createElement('option');
+                option.value = feature;
+                option.text = feature;
+                featureSelect.appendChild(option);
+            });
+        }
+
+        function submitForm() {
+            const selectedCategory = document.getElementById('category').value;
+            const selectedFeature = document.getElementById('feature').value;
+            const appListContainer = document.getElementById('appList');
+
+            appListContainer.innerHTML = '';
+
+            const filteredApps = appData.filter(app =>
+                app.category === selectedCategory &&
+                app.feature === selectedFeature
+            );
+
+            // Display all the matching apps
+            filteredApps.forEach(app => {
+                const appDiv = document.createElement('div');
+                appDiv.classList.add('app');
+                const img = document.createElement('img');
+                img.src = app.icon;
+                img.alt = app.name + ' icon';
+                const p = document.createElement('p');
+                p.textContent = `${app.name} - ${app.feature}`;
+                appDiv.appendChild(img);
+                appDiv.appendChild(p);
+                appListContainer.appendChild(appDiv);
+            });
+
+            // Show the appListContainer
+            appListContainer.style.opacity = 1;
+        }
+    </script>
+</body>
+
+</html>

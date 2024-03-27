@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Recommendation</title> 
+    <style>
+             body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            animation: fadeIn 0.1s ease-in-out;
+        }
+
+        header {
+            background-color: #2c3e50; /* Darker background color */
+            padding: 10px;
+            text-align: center;
+        }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            animation: marquee 5s linear infinite;
+            color: #3498db; /* Brighter text color */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        nav {
+            background-color: #2980b9; /* Darker background color */
+            overflow: hidden;
+            text-align: center;
+            padding: 10px; 
+        }
+
+
+        nav a {
+            display: block;
+            color: #fff; /* White text color */
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease, text-decoration 0.3s ease;
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        nav a:hover {
+            background-color: #34495e; /* Darker hover color */
+            color: #fff; /* White text color */
+            border-radius: 5px;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #2980b9; /* Darker background color */
+            text-align: center;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 10px; /* Adjusted margin for better spacing */
+        }
+
+        a {
+            display: block;
+            color: #fff; /* White text color */
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease, text-decoration 0.3s ease;
+            font-size: 18px;
+        }
+
+        a:hover {
+            background-color: #34495e; /* Darker hover color */
+            color: #fff; /* White text color */
+            border-radius: 5px;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+        }
+    </style>
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="marquee">App Recommendation</h1>
+    </header>
+
+<ul>
+    <li><a href="/Home">Home</a></li>
+    <li><a href="/Contact us">contact us</a></li>
+    <li><a href="/About us">About US</a></li>
+    <li><a href="/Bestapp">Bestapp</a></li>
+
+    <!-- Add more navigation links as needed -->
+</ul>
+    
+
+    <script>
+        const backgroundImages = [
+            'https://source.unsplash.com/featured/?apps',
+            'https://source.unsplash.com/featured/?technology',
+            'https://source.unsplash.com/featured/?coding',
+            'https://source.unsplash.com/featured/?mobile-apps',
+            'https://source.unsplash.com/featured/?software-development',
+            'https://source.unsplash.com/featured/?programming',
+            'https://source.unsplash.com/featured/?web-development',
+            'https://source.unsplash.com/featured/?design',
+            'https://source.unsplash.com/featured/?startup',
+            'https://source.unsplash.com/featured/?business-technology',
+            // Add more image URLs as needed
+        ];
+
+        let currentImageIndex = 0;
+
+        // Preload images for faster loading
+        function preloadImages() {
+            for (const imageUrl of backgroundImages) {
+                const img = new Image();
+                img.src = imageUrl;
+            }
+        }
+
+        function changeBackgroundImage() {
+            currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+            document.body.style.backgroundImage = `url('${backgroundImages[currentImageIndex]}')`;
+        }
+
+        // Preload images first
+        preloadImages();
+
+        // Change image every 1 second
+        setInterval(changeBackgroundImage, 1000);
+    </script>
+
+</body>
+</html>

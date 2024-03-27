@@ -1,0 +1,173 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Recommendation Result</title>
+    <!-- Additional styles or meta tags if needed -->
+</head>
+<body>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://www.microsoft.com/en-us/research/uploads/prod/2012/12/Theme-ltblue_MLStats_header_12_2019_1920x720.png");
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        #result-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+
+            footer {
+    background-color: rgba(51, 51, 51, 0.8); /* Transparent black color */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: -50px; /* Initially hidden below the viewport */
+    left: 0; /* Align to the left */
+    width: 100%;
+    transition: bottom 0.3s ease; /* Smooth transition for movement */
+}
+
+/* Hover effect to slide the footer up */
+footer:hover {
+    bottom: 0;
+}
+
+        
+    </style>
+
+<header>
+    <h1 style="margin: 0;">App Recommendation Result</h1>
+</header>
+
+<section>
+    <h2>Result</h2>
+    <div id="result-container"></div>
+</section>
+
+<footer>
+    <p>Email: babyrani.87654@gmail.com | Contact: 00-22333-44444</p>
+</footer>
+
+<script>
+    // Fetch parameters from URL
+    const params = new URLSearchParams(window.location.search);
+    const category =decodeURIComponent( params.get('category'));
+    const feature = decodeURIComponent(params.get('feature'));
+
+    // Fetch result using an imaginary ml.py script
+    // Replace this with your actual logic to fetch results
+    const result = getRecommendation(category, feature);
+
+    // Display result
+    const resultContainer = document.getElementById('result-container');
+    resultContainer.innerHTML = `<p>Best app recommendation for ${category} and feature ${feature}: ${result}</p>`;
+
+    // Replace this function with your actual logic to fetch recommendations
+    function getRecommendation(category, feature) {
+        // Example logic (replace with your ML model logic)
+        const recommendations = {
+            'Social': {
+                'messaging': 'WhatsApp',
+                'Secure Messaging':'Telegram Desktop',
+                'Social Photo Sharing': 'Instagram',
+                 'Social Networking':'Facebook',
+                 'Visual Discovery and Inspiration': 'Pinterest',
+                 'Instant Messaging':'Messenger',
+                 'Social News Aggregation and Discussion': 'Reddit',
+                 'Unofficial Telegram Client': 'Unigram - Telegram for Windows 10',
+                 'Desktop Version of imo for Video Calls and Chat': 'imo desktop free video calls and chat',
+                'Professional Networking Analytics': 'lnkd.in',
+                'Universal Cloud Dashboard': 'Cloud Drive! : OneDrive, Dropbox, Google Drive and more',
+                'Integrated website analytics and insights': 'WordPress.com',
+                'seamless integration with Windows notifications': 'WeChat For Windows',
+
+                // Add more recommendations as needed
+            },
+            'Entertainment': {
+                'On-Demand Video Streaming': 'Netflix',
+                'Audio Enhancement':'Dolby Access',
+                'Gaming Console Integration': 'Xbox',
+                'Immersive Audio Experience': 'DTS Sound Unbound',
+                'Enhanced YouTube Viewing': 'YouPlay - YouTube Player',
+                '3D Painting and Art Creation':'Paint 3D',
+                'Streaming Anime and Manga': 'Crunchyroll',
+                'Relaxing Coloring Book Experience':'Zen: Coloring book for adults',
+                'DVD Playback Support': 'DVD Player',
+                'youTube Video Download and Conversion': 'GoTube - Video Downloader for YouTube 4K. MP4 & MP3 Music Converter',
+                'Personalized Video Recommendations':'Videoder',
+                'Smart Photo Organization': 'Xbox Insider Hub',
+             },
+                'Music': {
+                 'Music Streaming': 'Spotify Music',
+                 'Media Library Management': 'iTunes',
+                 'Music Streaming & Discovery': 'Gaana',
+                 'Extensive Music Library and Radio': 'JioSaavn Music & Radio',
+                'YouTube Video Download and Conversion': 'TubeMate - YouTube Video Downloader',
+                 'Bluetooth Audio Connectivity':'Bluetooth Audio Receiver',
+                 'Collaborative Music Creation': 'Music Maker Jam',
+                 'Personalized Radio Station Recommendations': 'TuneIn Radio',
+                 'Real-time Pitch Correction in Karaoke': 'Karaoke One',
+                 'Download and convert YouTube videos to various formats': 'SnapTube Converter',
+                 'Virtual piano with customizable key layouts': 'Piano 10',
+                 'AI-assisted automatic beatmatching': 'Transitions DJ',
+                 'Automatic beatmatching and BPM synchronization for seamless mixing':'edjing 5: DJ turntable to mix and record music',
+                 'AI-generated dynamic playlists based on user mood and preferences.': 'MP3 Player - Music Player & Equalizer',
+            },
+              'Photo and Videos':{
+                'Media Player': 'VLC UWP',
+                'Photo Editing': 'Adobe Lightroom',
+                'Photo Editing Mastery': 'Adobe Photos',
+                'Creative Photo Collages': 'Picsart Photo Studio: Collage Maker and Picture Editor',
+                'Cinematic Video Editing': 'Movie Maker - Video Editor',
+                'Comprehensive PDF Toolkit': 'Reader For Adobe Acrobat PDF Editor ',
+                'AI-Powered Photo Editing': 'Luminar AI',
+                'Versatile Video Editing': 'FilmForth: video editor',
+                'High-Definition Video Playback': 'All Video Player HD',
+                'User-Friendly Video Editing': 'Animotica - Movie Maker',
+                'Multi-functional Screen Recording Suite': 'RecForth - Free Screen Recorder',
+                'HEIC Image Format Support and Conversion': 'HEIC Image Viewer ',
+                'Advanced Photo Editing Suite': 'PhotoScape X',
+                'Advanced photo Editing Tools': 'Photo Editor | Polar',
+                'Video and Music Conversion': 'VidMate Converter',
+                'Epson Printer Management': 'Epson Print and Scan',
+                'Customizable Web Browser': 'YouTuBrowser',
+                'High-Quality Media Playback with 4K UHD and HDR': 'CnX Media Player - 4K UHD & HDR Video Player',
+                'Free and Easy Video Editing': 'Movie Maker : Free Video Editor',
+                'Open-Source Media Center and Entertainment Hub': 'Kodi',
+                'Samsung Device Photo Gallery': 'Samsung Gallery',
+                'Universal Video Playback': 'Video Player - Play All Videos',
+                'Comprehensive Video Editing Studio': 'Video Editor Studio : Movie Maker, Flim Editor, Audio Mixer and More',
+
+            },
+            // Add more categories and recommendations as needed
+        };
+
+        return recommendations[category][feature] || 'No recommendation found';
+    }
+</script>
+
+</body>
+</html>
